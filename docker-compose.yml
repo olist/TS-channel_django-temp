@@ -22,4 +22,4 @@ services:
             pg_channel_tmp:
                 condition: service_healthy
 
-        command: ./run.sh
+        command: bash -f ./run.sh

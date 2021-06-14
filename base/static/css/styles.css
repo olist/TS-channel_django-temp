@@ -1,0 +1,16 @@
+.olist-logo {
+    width: 6%;
+    padding: 1%
+}
+
+body {
+    background-color: #EAEAF4;
+}
+
+.nav-link {
+    color: #0F1B67
+}
+
+.nav-link:hover {
+    color: #0C29D0
+}
