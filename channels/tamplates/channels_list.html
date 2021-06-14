@@ -1,1 +1,38 @@
 {% extends 'base.html' %}
+
+{% block content %}
+
+    <h2 class="mt-4">Channels</h2>
+    
+    {% if posted_products %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for posted_product in  posted_products %}
+
+                <tr>
+                    <td>{{ posted_product.id }}</td>
+                    <td>{{ posted_product.name }}</td>
+                    <td><a type="button" class="btn btn-primary" href="{% url 'create_product' posted_product.id %}" >Update</a></td>
+                    <td><a type="button" class="btn btn-danger" href="{% url 'delete_product' posted_product.id %}" >Delete</a></td>
+                </tr>
+
+            {% endfor %}
+
+        </tbody>
+    </table>
+    {% else %}
+        <p>There are no published products.</p>
+    {% endif %}
+
+
+{% endblock content %}
