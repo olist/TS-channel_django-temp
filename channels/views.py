@@ -5,7 +5,7 @@ from channels.forms import ProductPostForm
 
 def list_product(request):
     posted_products = ProductPost.objects.all()
-    return render(request, 'products.hmtl', {'posted_products': posted_products})
+    return render(request, 'channels_list.html', {'posted_products': posted_products})
 
 
 def create_product(request):
@@ -16,7 +16,7 @@ def create_product(request):
 
         return redirect('list-products')
     
-    return render(request, 'new/', {'post': post_form})
+    return render(request, 'channels_form.html', {'post': post_form})
 
 
 def update_product(request, post_id):
@@ -28,7 +28,7 @@ def update_product(request, post_id):
 
         return redirect('list-products')
     
-    return render(request, 'new/', {'post': post_form})
+    return render(request, 'channels_form.html', {'post': post_form})
 
 
 def delete_product(request, post_id):
