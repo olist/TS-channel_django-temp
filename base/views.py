@@ -1,6 +1,10 @@
 from django.shortcuts import render
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from channels.models import  UserAccount
+from django.shortcuts import render, redirect
 
-# Create your views here.
+
 def base_template(request):
     return render(request, 'base.html')
 
