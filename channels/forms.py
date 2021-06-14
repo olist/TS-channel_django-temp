@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from channels.models import ProductPost, Marketplace
+from channels.models import ProductPost
 
 
 class ProductPostForm(ModelForm):
@@ -7,10 +7,3 @@ class ProductPostForm(ModelForm):
     class Meta:
         model = ProductPost
         fields = '__all__'
-
-
-class MarketplaceForm(ModelForm):
-    
-    class Meta:
-        model = Marketplace
-        fields = ["name"]
