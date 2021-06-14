@@ -1,6 +1,5 @@
- from django.contrib import admin
-from .models import Marketplace
-
+from django.contrib import admin
+from channels.models import Marketplace
 
 
 @admin.register(Marketplace)
