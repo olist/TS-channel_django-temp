@@ -2,18 +2,19 @@
 
 {% block content %}
 
-<div class="col-md-7 col-lg-8">
-    <h4 class="mb-3">Create new product</h4>
-   
-    <form method="post" class="">{% csrf_token %}
+<div class="container">
+    
+    <div class="formcontainer">
 
-        {{ post.as_p }}
+        <form method="post" class="">{% csrf_token %}
+            <h4 class="mb-3">Create new product</h4>
+            {{ post.as_p }}
 
-        <input type="submit" value="Save" class="btn btn-primary">
-        <input type="submit" value="Return" class="btn btn-secondary">
+            <input type="submit" value="Save" class="btn btn-primary">
+            <input type="submit" value="Return" class="btn btn-secondary">
 
-    </form>
-
-</div> 
+        </form>
+    </div>
+</div>
 
 {% endblock content %}
