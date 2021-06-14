@@ -2,47 +2,51 @@
 
 {% block content %}
 
-    <h2 class="mt-4">Channels</h2>
-    
-    {% if posted_products %}
+<h2 class="mt-4 maintitle">Channels</h2>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">product_catalog_id</th>
-                <th scope="col">seller_id</th>
-                <th scope="col">status</th>
-                <th scope="col">created_at</th>
-                <th scope="col">updated_at</th>
-                <th scope="col">marketplace</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
+{% if posted_products %}
 
-            {% for posted_product in  posted_products %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">product_catalog_id</th>
+            <th scope="col">seller_id</th>
+            <th scope="col">status</th>
+            <th scope="col">created_at</th>
+            <th scope="col">updated_at</th>
+            <th scope="col">marketplace</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
 
-                <tr>
-                    <td>{{ posted_product.id }}</td>
-                    <td>{{ posted_product.product_catalog_id }}</td>
-                    <td>{{ posted_product.seller_id }}</td>
-                    <td>{{ posted_product.status }}</td>
-                    <td>{{ posted_product.created_at }}</td>
-                    <td>{{ posted_product.updated_at }}</td>
-                    <td>{{ posted_product.marketplace }}</td>
-                    <td><a type="button" class="btn btn-primary" href="{% url 'update-product' posted_product.id %}" >Update</a></td>
-                    <td><a type="button" class="btn btn-danger" href="{% url 'delete-product' posted_product.id %}" >Delete</a></td>
-                </tr>
+        {% for posted_product in posted_products %}
 
-            {% endfor %}
+        <tr>
+            <td>{{ posted_product.id }}</td>
+            <td>{{ posted_product.product_catalog_id }}</td>
+            <td>{{ posted_product.seller_id }}</td>
+            <td>{{ posted_product.status }}</td>
+            <td>{{ posted_product.created_at }}</td>
+            <td>{{ posted_product.updated_at }}</td>
+            <td>{{ posted_product.marketplace }}</td>
+            <td><a type="button" class="btn btn-primary" href="{% url 'update-product' posted_product.id %}">Update</a>
+            </td>
+            <td><a type="button" class="btn btn-danger" href="{% url 'delete-product' posted_product.id %}">Delete</a>
+            </td>
+        </tr>
 
-        </tbody>
-    </table>
-    {% else %}
-        <p>There are no published products.</p>
-    {% endif %}
+        {% endfor %}
+
+    </tbody>
+</table>
+{% else %}
+<div class="container">
+    <p>There are no published products.</p>
+</div>
+{% endif %}
 
 
 {% endblock content %}

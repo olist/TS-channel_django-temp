@@ -7,10 +7,24 @@ body {
     background-color: #EAEAF4;
 }
 
-.nav-link {
-    color: #0F1B67
+.container {
+    margin: 0 auto;
+    text-align:center;
+    display: flex;
+    justify-content: center;
 }
 
-.nav-link:hover {
-    color: #0C29D0
+.formcontainer {
+    margin: 7%;
+    width: 45%;
+    padding:6%;
+    display: flex;
+    justify-content: center;
+    text-align: end;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.maintitle {
+    padding: 2%;
 }
