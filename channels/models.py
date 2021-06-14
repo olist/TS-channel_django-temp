@@ -2,6 +2,15 @@ from django.db import models
 from django.db.models.deletion import CASCADE
 
 # Create your models here.
+class Marketplace(models.Model):
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
+
 class ProductPost(models.Model):
 
     marketplace = models.ForeignKey('Marketplace', models.DO_NOTHING, related_name='posted_products')
