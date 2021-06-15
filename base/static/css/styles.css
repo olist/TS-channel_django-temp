@@ -1,6 +1,8 @@
 .olist-logo {
-    width: 6%;
-    padding: 1%
+    width: 8%;
+    min-width: 80px;
+    padding: 1%;
+    padding-left: 2%
 }
 
 body {
@@ -27,4 +29,19 @@ body {
 
 .maintitle {
     padding: 2%;
+}
+
+@media screen and (max-width: 800px) {
+
+    .formcontainer {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .formcontainer {
+        width: 70%;
+        background-color: transparent;
+    }
 }
