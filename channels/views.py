@@ -46,7 +46,7 @@ def add_marketplace(request):
 
         if form.is_valid():
             form.save()
-            return redirect('list-mkt')
+            return redirect('list-marketplace')
     else:
         form = MarketplaceForm()
     return render(request, 'marketplace_form.html', {'form': form})
@@ -59,18 +59,18 @@ def list_marketplace(request):
 
 
 @login_required
-def update_mkt(request, mkt_id):
+def update_marketplace(request, mkt_id):
     mkt = Marketplace.objects.get(id=mkt_id)
     post_form = MarketplaceForm(request.POST or None, instance=mkt)
 
     if post_form.is_valid():
         post_form.save()
 
-        return redirect("list-mkt")
+        return redirect("list-marketplace")
     return render(request, "marketplace_form.html", {"form": post_form})
 
 
 @login_required
-def delete_mkt(request, mkt_id):
+def delete_marketplace(request, mkt_id):
     Marketplace.objects.get(id=mkt_id).delete()
-    return redirect("list-mkt")
+    return redirect("list-marketplace")

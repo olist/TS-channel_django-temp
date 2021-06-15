@@ -3,7 +3,7 @@
 {% block content %}
 
 <h2 class="mt-4 maintitle">Marketplace</h2>
-<td><a type="button" class="btn btn-danger" href="{% url 'marketplace' %}">Adicionar</a>
+<td><a type="button" class="btn btn-danger" href="{% url 'create-marketplace' %}">Adicionar</a>
 
 {% if list_mkt %}
 
@@ -24,7 +24,7 @@
             <td>{{ mkt.id }}</td>
             <td>{{ mkt.name }}</td>
 
-            <td><a type="button" class="btn btn-primary" href="{% url 'update-mkt' mkt.id %}">Update</a>
+            <td><a type="button" class="btn btn-primary" href="{% url 'update-marketplace' mkt.id %}">Update</a>
             </td>
             <td><a type="button" class="btn btn-danger" href="{%url 'delete-marketplace' mkt.id %}">Delete</a>
             </td>
