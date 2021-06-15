@@ -1,5 +1,5 @@
 from django.urls import path
-from channels.views import *
+from channels.views import list_product, create_product, update_product, delete_product
 
 urlpatterns = [
     path("", list_product, name="list-products"),

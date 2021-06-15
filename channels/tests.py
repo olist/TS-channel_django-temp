@@ -1,6 +1,4 @@
-from django.test import TestCase, Client
-from django.http import response
-from django.urls import reverse
+from django.test import TestCase
 from django.contrib.auth.models import User
 from base.models import UserAccount
 from channels.models import Marketplace, ProductPost
