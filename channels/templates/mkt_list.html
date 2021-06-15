@@ -3,7 +3,8 @@
 {% block content %}
 
 <h2 class="mt-4 maintitle">Marketplace</h2>
-
+<br>
+<a type="button" class="btn btn-danger add-btn" href="{% url 'create-marketplace' %}">Add New</a>
 
 {% if list_mkt %}
 
@@ -33,7 +34,6 @@
         {% endfor %}
 
     </tbody>
-    <a type="button" class="btn btn-danger add-btn" href="{% url 'create-marketplace' %}">Add New</a>
 {% else %}
 <div class="container">
     <p>There are no published marketplace.</p>
