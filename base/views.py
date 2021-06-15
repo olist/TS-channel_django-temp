@@ -15,8 +15,7 @@ def become_user(request):
             user = form.save()
             login(request, user)
             user = UserAccount.objects.create(
-                name=user.username,
-                created_by=user
+                name=user.username, created_by=user
             )
             return redirect("login")
         else:

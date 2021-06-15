@@ -102,8 +102,7 @@ class TestMarketplace(TestCase):
 
     def test_create_marketplace(self):
         res = self.client.post(
-            "/post-products/marketplace/new",
-            self.marketplace
+            "/post-products/marketplace/new", self.marketplace
         )
         self.assertEqual(res.status_code, 302)
 
@@ -112,7 +111,7 @@ class TestMarketplace(TestCase):
         marketplace = Marketplace.objects.last()
         res = self.client.post(
             f"/post-products/marketplace/update/{marketplace.id}",
-            self.edit_marketplace
+            self.edit_marketplace,
         )
         self.assertEqual(res.status_code, 302)
 

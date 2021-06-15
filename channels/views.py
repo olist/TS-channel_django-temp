@@ -8,9 +8,7 @@ from .models import ProductPost, Marketplace
 def list_product(request):
     posted_products = ProductPost.objects.all()
     return render(
-        request,
-        "channels_list.html",
-        {"posted_products": posted_products}
+        request, "channels_list.html", {"posted_products": posted_products}
     )
 
 
