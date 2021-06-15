@@ -101,19 +101,25 @@ class TestMarketplace(TestCase):
         self.assertEqual(res.status_code, 200)
 
     def test_create_marketplace(self):
-        res = self.client.post("/post-products/marketplace/new", self.marketplace)
+        res = self.client.post(
+            "/post-products/marketplace/new",
+            self.marketplace
+        )
         self.assertEqual(res.status_code, 302)
 
     def test_update_marketplace(self):
         self.client.post("/post-products/marketplace/new", self.marketplace)
         marketplace = Marketplace.objects.last()
         res = self.client.post(
-            f"/post-products/marketplace/update/{marketplace.id}", self.edit_marketplace
+            f"/post-products/marketplace/update/{marketplace.id}",
+            self.edit_marketplace
         )
         self.assertEqual(res.status_code, 302)
 
     def test_delete_marketplace(self):
         self.client.post("/post-products/marketplace/new", self.marketplace)
         marketplace = Marketplace.objects.last()
-        res = self.client.post(f"/post-products/marketplace/delete/{marketplace.id}")
+        res = self.client.post(
+            f"/post-products/marketplace/delete/{marketplace.id}"
+        )
         self.assertEqual(res.status_code, 302)

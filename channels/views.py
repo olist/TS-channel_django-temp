@@ -7,7 +7,11 @@ from .models import ProductPost, Marketplace
 @login_required
 def list_product(request):
     posted_products = ProductPost.objects.all()
-    return render(request, "channels_list.html", {"posted_products": posted_products})
+    return render(
+        request,
+        "channels_list.html",
+        {"posted_products": posted_products}
+    )
 
 
 @login_required
