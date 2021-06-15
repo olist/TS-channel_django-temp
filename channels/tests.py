@@ -77,3 +77,44 @@ class TestChannels(TestCase):
         product_post = ProductPost.objects.last()
         res = self.client.post(f"/post-products/delete/{product_post.id}")
         self.assertEqual(res.status_code, 302)
+
+
+
+class TestMarketplace(TestCase):
+    def setUp(self):
+        self.register_account_to_log = {
+            "email": "login@gmail.com",
+            "password": "loginpasswd",
+            "username": "login",
+        }
+        #### 
+        self.marketplace = {
+            "name": 'marketplace1',
+        }
+        self.edit_marketplace = {
+            "name": 'marketplace2',
+        }
+        user = User.objects.create(**self.register_account_to_log)
+        self.client.force_login(user)
+
+    def test_get_marketplace(self):
+        res = self.client.get("/post-products/marketplace")
+        self.assertEqual(res.status_code, 200)
+
+    def test_create_marketplace(self):
+        res = self.client.post("/post-products/marketplace/new", self.marketplace)
+        self.assertEqual(res.status_code, 302)
+
+    def test_update_marketplace(self):
+        self.client.post("/post-products/marketplace/new", self.marketplace)
+        marketplace = Marketplace.objects.last()
+        res = self.client.post(
+            f"/post-products/marketplace/update/{marketplace.id}", self.edit_marketplace
+        )
+        self.assertEqual(res.status_code, 302)
+
+    def test_delete_marketplace(self):
+        self.client.post("/post-products/marketplace/new", self.marketplace)
+        marketplace = Marketplace.objects.last()
+        res = self.client.post(f"/post-products/marketplace/delete/{marketplace.id}")
+        self.assertEqual(res.status_code, 302)
