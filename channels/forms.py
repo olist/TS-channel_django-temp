@@ -3,7 +3,6 @@ from channels.models import ProductPost
 
 
 class ProductPostForm(ModelForm):
-
     class Meta:
         model = ProductPost
-        fields = '__all__'
+        fields = "__all__"
