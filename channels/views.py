@@ -41,21 +41,21 @@ def delete_product(request, post_id):
 
 @login_required
 def add_marketplace(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = MarketplaceForm(request.POST or None)
 
         if form.is_valid():
             form.save()
-            return redirect('list-marketplace')
+            return redirect("list-marketplace")
     else:
         form = MarketplaceForm()
-    return render(request, 'marketplace_form.html', {'form': form})
+    return render(request, "marketplace_form.html", {"form": form})
+
 
 @login_required
 def list_marketplace(request):
     list_mkt = Marketplace.objects.all()
-    return render(request, "mkt_list.html",
-                  {"list_mkt": list_mkt})
+    return render(request, "mkt_list.html", {"list_mkt": list_mkt})
 
 
 @login_required
