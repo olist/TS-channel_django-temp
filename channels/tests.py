@@ -43,7 +43,7 @@ def test_product_post_model():
     assert post_product.id == 1
 
 
-class Test(TestCase):
+class TestChannels(TestCase):
 
     def setUp(self):
         self.register_account_to_log = {
@@ -60,10 +60,16 @@ class Test(TestCase):
             'username': 'teste',
             'password': 'testpass',
         }
+        marketplace = Marketplace.objects.create(name='marketplace')
         self.product_post = {
-            'marketplace': 1,
+            'marketplace': marketplace.id,
             'product_catalog_id': 1,
             'seller_id': 1,
+        }
+        self.edit_product_post = {
+            'marketplace': marketplace.id,
+            'product_catalog_id': 2,
+            'seller_id': 2
         }
         user = User.objects.create(**self.register_account_to_log)
         self.client.force_login(user)
@@ -77,11 +83,21 @@ class Test(TestCase):
         self.assertEqual(res.status_code, 200)
 
     def test_get_product_post(self):
-        user = User.objects.create(**self.register_account)
-        self.client.force_login(user)
         res = self.client.get('/post-products/')
         self.assertEqual(res.status_code, 200)
 
-    # def test_create_product_post(self):
-    #     res = self.client.post('/post-products/new/', self.product_post)
-    #     self.assertEqual(res.status_code, 200)
+    def test_create_product_post(self):
+        res = self.client.post('/post-products/new/', self.product_post)
+        self.assertEqual(res.status_code, 302)
+
+    def test_update_product_post(self):
+        self.client.post('/post-products/new/', self.product_post)
+        product_post = ProductPost.objects.last()
+        res = self.client.post(f'/post-products/update/{product_post.id}', self.edit_product_post)
+        self.assertEqual(res.status_code, 302)
+
+    def test_delete_product_post(self):
+        self.client.post('/post-products/new/', self.product_post)
+        product_post = ProductPost.objects.last()
+        res = self.client.post(f'/post-products/delete/{product_post.id}')
+        self.assertEqual(res.status_code, 302)

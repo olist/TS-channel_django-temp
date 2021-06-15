@@ -14,7 +14,6 @@ def create_product(request):
     post_form = ProductPostForm(request.POST or None)
     
     if post_form.is_valid():
-        print('oq deu auqo', post_form)
         post_form.save()
 
         return redirect('list-products')
