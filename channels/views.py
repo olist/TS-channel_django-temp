@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from channels.forms import ProductPostForm
+from channels.forms import ProductPostForm, MarketplaceForm
 from django.contrib.auth.decorators import login_required
-from .models import ProductPost
+from .models import ProductPost, Marketplace
 
 
 @login_required
@@ -37,3 +37,40 @@ def update_product(request, post_id):
 def delete_product(request, post_id):
     ProductPost.objects.get(id=post_id).delete()
     return redirect("list-products")
+
+
+@login_required
+def add_marketplace(request):
+    if request.method == 'POST':
+        form = MarketplaceForm(request.POST or None)
+
+        if form.is_valid():
+            form.save()
+            return redirect('list-mkt')
+    else:
+        form = MarketplaceForm()
+    return render(request, 'marketplace_form.html', {'form': form})
+
+@login_required
+def list_marketplace(request):
+    list_mkt = Marketplace.objects.all()
+    return render(request, "mkt_list.html",
+                  {"list_mkt": list_mkt})
+
+
+@login_required
+def update_mkt(request, mkt_id):
+    mkt = Marketplace.objects.get(id=mkt_id)
+    post_form = MarketplaceForm(request.POST or None, instance=mkt)
+
+    if post_form.is_valid():
+        post_form.save()
+
+        return redirect("list-mkt")
+    return render(request, "marketplace_form.html", {"form": post_form})
+
+
+@login_required
+def delete_mkt(request, mkt_id):
+    Marketplace.objects.get(id=mkt_id).delete()
+    return redirect("list-mkt")
