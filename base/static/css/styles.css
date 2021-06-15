@@ -9,6 +9,10 @@ body {
     background-color: #EAEAF4;
 }
 
+.add-btn {
+    margin-left: 2%;
+}
+
 .container {
     margin: 0 auto;
     text-align:center;
@@ -27,8 +31,20 @@ body {
     border-radius: 20px;
 }
 
+.formcontainer-left {
+    margin: 7%;
+    width: 45%;
+    padding:6%;
+    display: flex;
+    justify-content: center;
+    text-align: start;
+    background-color: white;
+    border-radius: 20px;
+}
+
+
 .maintitle {
-    padding: 2%;
+    margin-left: 2%;
 }
 
 @media screen and (max-width: 800px) {
