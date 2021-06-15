@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mt-4 maintitle">Marketplace</h2>
+<td><a type="button" class="btn btn-danger" href="{% url 'create-marketplace' %}">Adicionar</a>
+
+{% if list_mkt %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for mkt in list_mkt %}
+
+        <tr>
+            <td>{{ mkt.id }}</td>
+            <td>{{ mkt.name }}</td>
+
+            <td><a type="button" class="btn btn-primary" href="{% url 'update-marketplace' mkt.id %}">Update</a>
+            </td>
+            <td><a type="button" class="btn btn-danger" href="{%url 'delete-marketplace' mkt.id %}">Delete</a>
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+{% else %}
+<div class="container">
+    <p>There are no published marketplace.</p>
+</div>
+{% endif %}
+
+
+    {% endblock content %}
