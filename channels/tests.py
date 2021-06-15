@@ -79,7 +79,6 @@ class TestChannels(TestCase):
         self.assertEqual(res.status_code, 302)
 
 
-
 class TestMarketplace(TestCase):
     def setUp(self):
         self.register_account_to_log = {
@@ -87,12 +86,12 @@ class TestMarketplace(TestCase):
             "password": "loginpasswd",
             "username": "login",
         }
-        #### 
+        ####
         self.marketplace = {
-            "name": 'marketplace1',
+            "name": "marketplace1",
         }
         self.edit_marketplace = {
-            "name": 'marketplace2',
+            "name": "marketplace2",
         }
         user = User.objects.create(**self.register_account_to_log)
         self.client.force_login(user)
