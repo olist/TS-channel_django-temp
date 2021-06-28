@@ -3,6 +3,7 @@ from rest_framework import serializers
 from channels.forms import ProductPostForm, MarketplaceForm
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import status
 from django.contrib.auth.decorators import login_required
 from channels.serializers import MarketplaceSerializer, ProductPostSerializer
 from .models import ProductPost, Marketplace
@@ -134,14 +135,14 @@ def product_post_api(resquest):
         "Update": "/update",
         "Delete": "/delete",
     }
-    return Response(api_urls)
+    return Response(api_urls, status=status.HTTP_200_OK)
 
 
 @api_view(["GET"])
 def product_post_list(request):
     productpost = ProductPost.objects.all()
     serializer = ProductPostSerializer(productpost, many=True)
-    return Response(serializer.data)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(["POST"])
@@ -149,7 +150,9 @@ def product_post_create(request):
     serializer = ProductPostSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
-    return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(["PATCH"])
@@ -158,11 +161,13 @@ def product_post_update(request, id):
     serializer = ProductPostSerializer(instance=productpost, data=request.data)
     if serializer.is_valid():
         serializer.save()
-    return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(["DELETE"])
 def product_post_delete(request, id):
     productpost = ProductPost.objects.get(id=id)
     productpost.delete()
-    return Response("Product Post deleted!")
+    return Response("Product Post deleted!", status=status.HTTP_200_OK)
