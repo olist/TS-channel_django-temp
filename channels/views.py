@@ -91,14 +91,14 @@ def marketplace_api(resquest):
         "Update": "/update",
         "Delete": "/delete",
     }
-    return Response(api_urls)
+    return Response(api_urls, status=status.HTTP_200_OK)
 
 
 @api_view(["GET"])
 def marketplace_list(request):
     marketplace = Marketplace.objects.all()
     serializer = MarketplaceSerializer(marketplace, many=True)
-    return Response(serializer.data)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(["POST"])
@@ -106,7 +106,9 @@ def marketplace_create(request):
     serializer = MarketplaceSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
-    return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(["PATCH"])
@@ -115,14 +117,16 @@ def marketplace_update(request, id):
     serializer = MarketplaceSerializer(instance=marketplace, data=request.data)
     if serializer.is_valid():
         serializer.save()
-    return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(["DELETE"])
 def marketplace_delete(request, id):
     marketplace = Marketplace.objects.get(id=id)
     marketplace.delete()
-    return Response("Marketplace deleted!")
+    return Response("Marketplace deleted!", status=status.HTTP_200_OK)
 
 
 ############################################ API Productpost ###################################
