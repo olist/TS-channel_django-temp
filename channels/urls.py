@@ -19,8 +19,22 @@ urlpatterns = [
         name="delete-marketplace",
     ),
     path("marketplace_api/", views.marketplace_api, name="marketplace_api"),
-    path("marketplace_api/list", views.marketplace_list, name="marketplace_list"),
-    path("marketplace_api/create", views.marketplace_create, name="marketplace_create"),
-    path("marketplace_api/update/<str:id>/", views.marketplace_update, name="marketplace_update"),
-    path("marketplace_api/delete/<str:id>/", views.marketplace_delete, name="marketplace_delete"),
+    path(
+        "marketplace_api/list", views.marketplace_list, name="marketplace_list"
+    ),
+    path(
+        "marketplace_api/create",
+        views.marketplace_create,
+        name="marketplace_create",
+    ),
+    path(
+        "marketplace_api/update/<str:id>/",
+        views.marketplace_update,
+        name="marketplace_update",
+    ),
+    path(
+        "marketplace_api/delete/<str:id>/",
+        views.marketplace_delete,
+        name="marketplace_delete",
+    ),
 ]
