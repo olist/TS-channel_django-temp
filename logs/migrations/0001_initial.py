@@ -7,26 +7,41 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='OrderLog',
+            name="OrderLog",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('requested_at', models.DateTimeField(auto_now_add=True)),
-                ('responded_at', models.DateTimeField(auto_now=True)),
-                ('status', models.CharField(max_length=50)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("requested_at", models.DateTimeField(auto_now_add=True)),
+                ("responded_at", models.DateTimeField(auto_now=True)),
+                ("status", models.CharField(max_length=50)),
             ],
         ),
         migrations.CreateModel(
-            name='ShippingLog',
+            name="ShippingLog",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('requested_at', models.DateTimeField(auto_now_add=True)),
-                ('responded_at', models.DateTimeField(auto_now=True)),
-                ('status', models.CharField(max_length=50)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("requested_at", models.DateTimeField(auto_now_add=True)),
+                ("responded_at", models.DateTimeField(auto_now=True)),
+                ("status", models.CharField(max_length=50)),
             ],
         ),
     ]
