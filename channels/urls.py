@@ -57,4 +57,3 @@ urlpatterns = [
         name="product_post_delete",
     ),
 ]
-]
