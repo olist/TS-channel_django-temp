@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from rest_framework import serializers
 from channels.forms import ProductPostForm, MarketplaceForm
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -151,7 +150,7 @@ def product_post_create(request):
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-    
+
     return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 

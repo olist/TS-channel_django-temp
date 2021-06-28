@@ -39,7 +39,9 @@ urlpatterns = [
     ),
     path("product_post_api/", views.product_post_api, name="product_post_api"),
     path(
-        "product_post_api/list", views.product_post_list, name="product_post_list"
+        "product_post_api/list",
+        views.product_post_list,
+        name="product_post_list",
     ),
     path(
         "product_post_api/create",
