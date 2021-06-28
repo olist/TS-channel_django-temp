@@ -37,4 +37,24 @@ urlpatterns = [
         views.marketplace_delete,
         name="marketplace_delete",
     ),
+    path("product_post_api/", views.product_post_api, name="product_post_api"),
+    path(
+        "product_post_api/list", views.product_post_list, name="product_post_list"
+    ),
+    path(
+        "product_post_api/create",
+        views.product_post_create,
+        name="product_post_create",
+    ),
+    path(
+        "product_post_api/update/<str:id>/",
+        views.product_post_update,
+        name="product_post_update",
+    ),
+    path(
+        "product_post_api/delete/<str:id>/",
+        views.product_post_delete,
+        name="product_post_delete",
+    ),
+]
 ]
