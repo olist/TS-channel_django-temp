@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
+from rest_framework import serializers
 from channels.forms import ProductPostForm, MarketplaceForm
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from django.contrib.auth.decorators import login_required
+from channels.serializers import MarketplaceSerializer
 from .models import ProductPost, Marketplace
 
 
@@ -76,3 +80,45 @@ def update_marketplace(request, mkt_id):
 def delete_marketplace(request, mkt_id):
     Marketplace.objects.get(id=mkt_id).delete()
     return redirect("list-marketplace")
+
+
+@api_view(['GET'])
+def marketplace_api(resquest):
+    api_urls = {
+        'List': '/list',
+        'Create':'/create',
+        'Update':'/update',
+        'Delete':'/delete',
+    }
+    return Response(api_urls)
+
+
+@api_view(['GET'])
+def marketplace_list(request):
+    marketplace = Marketplace.objects.all()
+    serializer = MarketplaceSerializer(marketplace, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def marketplace_create(request):
+    serializer = MarketplaceSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+
+@api_view(['PATCH'])
+def marketplace_update(request, id):
+    marketplace = Marketplace.objects.get(id=id)
+    serializer = MarketplaceSerializer(instance=marketplace, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+
+@api_view(['DELETE'])
+def marketplace_delete(request, id):
+    marketplace = Marketplace.objects.get(id=id)
+    marketplace.delete()
+    return Response('Marketplace deleted!')
