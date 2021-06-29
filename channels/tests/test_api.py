@@ -55,19 +55,19 @@ def test_deve_retornar_400_quando_acessar_rota_marketplace_create_sem_dados_form
 #     assert res.status_code == 200
 
 
-@pytest.mark.django_db
-def test_deve_retornar_200_quando_acessar_rota_marketplace_update(
-    client, instance_marketplace
-):
-    instance_marketplace.save()
-    factory = APIRequestFactory()
-    request = factory.patch(
-        f"/post-products/product_post_api/update/{instance_marketplace}/",
-        {"name": "oi"},
-    )
-    response = marketplace_update(request)
-    # self.assertEqual(response.status_code, 200)
-    assert response.status_code == 200
+# @pytest.mark.django_db
+# def test_deve_retornar_200_quando_acessar_rota_marketplace_update(
+#     client, instance_marketplace
+# ):
+#     instance_marketplace.save()
+#     factory = APIRequestFactory()
+#     request = factory.patch(
+#         f"/post-products/product_post_api/update/{instance_marketplace}/",
+#         {"name": "oi"},
+#     )
+#     response = marketplace_update(request)
+#     # self.assertEqual(response.status_code, 200)
+#     assert response.status_code == 200
 
 
 # @pytest.mark.django_db
