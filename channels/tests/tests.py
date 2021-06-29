@@ -130,6 +130,8 @@ class TestMarketplace(TestCase):
             f"/post-products/marketplace/delete/{marketplace.id}"
         )
         self.assertEqual(res.status_code, 302)
+
+
 from django.test import TestCase
 from django.contrib.auth.models import User
 from base.models import UserAccount

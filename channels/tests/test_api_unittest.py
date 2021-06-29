@@ -51,10 +51,10 @@ class GetAllProductPostTest(TestCase):
             "seller_id": 2,
             "status": True,
         }
-    
+
     # def tearDown(self) -> None:
     #     Marketplace.objects.filter(id=self.marketplace.id).delete()
-        
+
     def test_deve_retornar_200_quando_request_get_em_product_post_list(self):
         # get API response
         response = client.get(reverse("product_post_list"))
@@ -64,21 +64,22 @@ class GetAllProductPostTest(TestCase):
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-
-    def test_deve_retornar_201_quando_request_post_em_product_post_create_com_produto_valido(self):
+    def test_deve_retornar_201_quando_request_post_em_product_post_create_com_produto_valido(
+        self,
+    ):
         response = client.post(
-            reverse('product_post_create'),
+            reverse("product_post_create"),
             data=json.dumps(self.produto_valido),
-            content_type='application/json'
+            content_type="application/json",
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-    def test_deve_retornar_400_quando_request_post_em_product_post_create_com_produto_invalido(self):
+    def test_deve_retornar_400_quando_request_post_em_product_post_create_com_produto_invalido(
+        self,
+    ):
         response = client.post(
-            reverse('product_post_create'),
+            reverse("product_post_create"),
             data=json.dumps(self.produto_invalido),
-            content_type='application/json'
+            content_type="application/json",
         )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        
-    

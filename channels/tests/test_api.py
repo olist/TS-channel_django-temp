@@ -48,9 +48,7 @@ def test_deve_retornar_400_quando_acessar_rota_marketplace_create_sem_dados_form
 
 
 @pytest.mark.django_db
-def test_deve_retornar_201_quando_acessar_rota_marketplace_create(
-    client
-):
+def test_deve_retornar_201_quando_acessar_rota_marketplace_create(client):
     data = {"name": "Marketplace Teste criado"}
     url_test = reverse("marketplace_create")
     res = client.post(url_test, data=data, content_type="application/json")
