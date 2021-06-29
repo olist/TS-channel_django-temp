@@ -1,12 +1,6 @@
-from django.test.client import Client
 from django.urls import reverse
-
-from rest_framework.test import APIRequestFactory
-
-import pytest
-
 from channels.models import Marketplace, ProductPost
-from channels.views import marketplace_update
+import pytest
 
 
 @pytest.fixture
@@ -19,9 +13,6 @@ def instance_marketplace() -> Marketplace:
 def instance_productpost():
     marketplace = ProductPost()
     return marketplace
-
-
-from channels.models import Marketplace, ProductPost
 
 
 @pytest.mark.django_db
@@ -51,7 +42,7 @@ def test_deve_retornar_400_quando_acessar_rota_marketplace_create_sem_dados_form
 def test_deve_retornar_201_quando_acessar_rota_marketplace_create(client):
     data = {"name": "Marketplace Teste criado"}
     url_test = reverse("marketplace_create")
-    res = client.post(url_test, data=data, content_type="application/json")
+    res = client.post(url_test, data=data)
     assert res.status_code == 201
 
 

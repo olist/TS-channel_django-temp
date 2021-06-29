@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect
 from channels.forms import ProductPostForm, MarketplaceForm
-from rest_framework.decorators import api_view, parser_classes
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.parsers import JSONParser
-
 from django.contrib.auth.decorators import login_required
 from channels.serializers import MarketplaceSerializer, ProductPostSerializer
 from .models import ProductPost, Marketplace
@@ -150,7 +148,6 @@ def product_post_list(request):
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-@parser_classes([JSONParser])
 @api_view(["POST"])
 def product_post_create(request):
     serializer = ProductPostSerializer(data=request.data)
@@ -161,7 +158,6 @@ def product_post_create(request):
     return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
 
-@parser_classes([JSONParser])
 @api_view(["PATCH"])
 def product_post_update(request, id):
     productpost = ProductPost.objects.get(id=id)
