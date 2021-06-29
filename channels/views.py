@@ -149,6 +149,7 @@ def product_post_list(request):
     serializer = ProductPostSerializer(productpost, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
+
 @parser_classes([JSONParser])
 @api_view(["POST"])
 def product_post_create(request):

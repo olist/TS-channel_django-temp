@@ -20,6 +20,12 @@ flake8 = "^3.9.2"
 pytest = "^6.2.4"
 pytest-django = "^4.4.0"
 
+[tool.mypy]
+ignore_missing_imports = true
+warn_return_any = true
+warn_unused_configs = true
+exclude = "setup/|manage.py|migrations/"
+
 [tool.black]
 line-length = 79
 include = '\.pyi?$'
