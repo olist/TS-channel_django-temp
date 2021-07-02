@@ -1,6 +1,7 @@
 version: '3.9'
 
 services:
+
     pg_channel_tmp:
         image: postgres
         env_file: .env
@@ -11,11 +12,9 @@ services:
             timeout: 3s
         restart: always
 
-    django_channel_tmp:
+    django_channel_1:
         build: ./
         env_file: .env
-        ports:
-            - 3000:3000
         volumes:
             - ./:/var/www
         depends_on:
@@ -23,3 +22,27 @@ services:
                 condition: service_healthy
 
         command: bash -f ./run.sh
+
+    django_channel_2:
+        build: ./
+        env_file: .env
+        volumes:
+            - ./:/var/www
+        depends_on:
+            pg_channel_tmp:
+                condition: service_healthy
+
+        command: bash -f ./run.sh
+
+    nginx:
+        build: ./nginx/.
+        tty: true
+        ports:
+            - 9400:9400
+        depends_on:
+            - django_channel_1
+            - django_channel_2
+        volumes:
+            - ./nginx/servers:/etc/nginx/conf.d/servers.conf
+            - ./staticfiles:/var/www/static/
+
